@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inline Pop-Up Example</title>
+    <style>
+        .popup {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            padding: 10px;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <p>Click <a href="#" onclick="showPopup(event)">here</a> for more information.</p>
+    <div id="popup" class="popup">
+        <p>This is the inline text pop-up content. Click anywhere outside to close.</p>
+    </div>
+
+    <script>
+        function showPopup(event) {
+            event.preventDefault();
+            var popup = document.getElementById('popup');
+            popup.style.display = 'block';
+            document.addEventListener('click', function(event) {
+                if (!popup.contains(event.target) && event.target.tagName !== 'A') {
+                    popup.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
